@@ -34,13 +34,13 @@ pipeline {
         }
         stage('push to nexus') {
             steps {
-              nexusArtifactUploader artifacts: [[artifactId: 'SampleWebApp', classifier: '', file: 'SampleWebApp/target/SampleWebApp.war', type: 'war']], credentialsId: 'nexuspass', groupId: 'SampleWebApp', nexusUrl: 'ec2-3-89-118-48.compute-1.amazonaws.com:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0-SNAPSHOT'
+              nexusArtifactUploader artifacts: [[artifactId: 'SampleWebApp', classifier: '', file: 'SampleWebApp/target/SampleWebApp.war', type: 'war']], credentialsId: 'nexuspass', groupId: 'SampleWebApp', nexusUrl: 'ec2-3-226-248-96.compute-1.amazonaws.com:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0-snapshot'
             
         }
         }    
         stage('deploy to tomcat') {
           steps {
-             deploy adapters: [tomcat9(credentialsId: 'tompass', path: '', url: 'http://54.175.55.68:8080/')], contextPath: 'monolithicApp', war: '**/*.war'
+             deploy adapters: [tomcat9(credentialsId: 'tompass', path: '', url: 'http://34.206.52.100:8080/')], contextPath: 'monolithicApp', war: '**/*.war'
                           
               
           }
