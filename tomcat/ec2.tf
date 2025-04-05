@@ -1,7 +1,7 @@
 # configured aws provider with proper credentials
 provider "aws" {
   region    = "us-east-1"
-  profile   = "yusuf"
+  profile   = "chris"
 }
 
 
@@ -72,7 +72,7 @@ data "aws_ami" "ubuntu" {
 
     filter {
         name   = "name"
-        values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+        values = ["ubuntu/images/hvm-ssd/ubuntu-*-amd64-server-*"]
     }
 
     filter {
@@ -89,7 +89,7 @@ resource "aws_instance" "ec2_instance" {
   instance_type          = "t2.small"
   subnet_id              = aws_default_subnet.default_az1.id
   vpc_security_group_ids = [aws_security_group.tomcat_ec2_security_group.id]
-  key_name               = "devopskeypair"
+  key_name               = "great"
    user_data = "${file("install_tomcat.sh")}"
 
   tags = {
